@@ -8,7 +8,7 @@ var holder,ball,ground;
 var stand1,stand2;
 var ball;
 var slingShot;
-var polygon_img;
+var polygon, polygon_img;
 function preload(){
   polygon_img=loadImage("polygon.png");
 }
@@ -20,6 +20,14 @@ function setup() {
   ground = new Ground();
   stand1 = new Stand(390,300,250,10);
   stand2 = new Stand(700,200,200,10);
+  
+  polygon = Bodies.circle(50,200,20);
+  imageMode(CENTER);
+  image(polygon_img, polygon.position.x,polygon.position.y,40,40);
+  World.add(world,polygon);
+
+
+  slingShot = new SlingShot(this.polygon,{x:100,y:200})
  
   //level one
   block1 = new Block(300,275,30,40);
@@ -43,19 +51,31 @@ function setup() {
   //top
   block16 = new Block(390,155,30,40);
 
+  ///////////////////////////////////
 
-  
+  block17 = new Block(640,180,30,40);
+  block18 = new Block(670,180,30,40);
+  block19 = new Block(700,180,30,40);
+  block20 = new Block(730,180,30,40);
+  block21 = new Block(760,180,30,40);
 
+  block22 = new Block(670,140,30,40);
+  block23 = new Block(700,140,30,40);
+  block24 = new Block(730,140,30,40);
+
+  block25 = new Block(700,100,30,40);
 }
 function draw() {
   background(56,44,44); 
- 
-  textSize(20);
+
+  //polygon.display();
+  slingShot.display();
   fill("lightyellow");
   
 
   ground.display();
   stand1.display();
+  stand2.display();
   
   strokeWeight(2);
   stroke(15);
@@ -79,6 +99,24 @@ function draw() {
   block15.display();
   fill("grey");
   block16.display();
- 
-
+  fill("skyblue");
+  block17.display();
+  block18.display();
+  block19.display();
+  block20.display();
+  block21.display();
+  fill("turquoise");
+  block22.display();
+  block23.display();
+  block24.display();
+  fill("pink");
+  block25.display();
 }
+
+// function mouseDragged(){
+//   Matter.Body.setPosition(polygon.body, {x: mouseX , y: mouseY});
+// }
+
+// function mouseReleased(){
+//   slingshot.fly();
+// }
