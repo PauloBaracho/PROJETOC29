@@ -21,13 +21,13 @@ function setup() {
   stand1 = new Stand(390,300,250,10);
   stand2 = new Stand(700,200,200,10);
   
-  polygon = Bodies.circle(50,200,20);
-  imageMode(CENTER);
-  image(polygon_img, polygon.position.x,polygon.position.y,40,40);
-  World.add(world,polygon);
+  // polygon = Bodies.circle(50,200,20);
+  // imageMode(CENTER);
+  // image(polygon_img, polygon.position.x,polygon.position.y,40,40);
+  // World.add(world,polygon);
 
-
-  slingShot = new SlingShot(this.polygon,{x:100,y:200})
+  polygon = new Polygon (50,200,20)
+  slingShot = new Launcher(polygon.body,{x:100,y:200})
  
   //level one
   block1 = new Block(300,275,30,40);
@@ -66,9 +66,14 @@ function setup() {
   block25 = new Block(700,100,30,40);
 }
 function draw() {
-  background(56,44,44); 
+  background(56,44,44);
 
-  //polygon.display();
+  fill ("white");
+  textSize(22);
+  text ("PRESSIONE ESPAÇO PARA RESTAURAR O POLÍGONO",30,60);
+  text("ARRASTE O POLÍGONO E O SOLTE, PARA LANÇÁ-LO CONTRA OS BLOCOS", 30,30);
+
+  polygon.display();
   slingShot.display();
   fill("lightyellow");
   
@@ -113,10 +118,18 @@ function draw() {
   block25.display();
 }
 
-// function mouseDragged(){
-//   Matter.Body.setPosition(polygon.body, {x: mouseX , y: mouseY});
-// }
+function mouseDragged(){
+  Matter.Body.setPosition(polygon.body, {x: mouseX , y: mouseY});
+}
 
-// function mouseReleased(){
-//   slingshot.fly();
-// }
+function mouseReleased(){
+  slingShot.fly();
+}
+
+function keyPressed() {
+  if (keyCode === 32) {
+    Matter.Body.setPosition(polygon.body,{x:100, y:200})
+    slingShot = new Launcher (polygon.body, {x:100, y:200});
+    slingShot.attach(polygon.body)
+  } 
+}
