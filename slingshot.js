@@ -1,23 +1,23 @@
-class SlingShot{
-    constructor(bodyA, batata){
+class Launcher{
+    constructor(bodyA, pontoB){
         var options = {
             bodyA: bodyA,
-            pointB: batata,
+            pointB: pontoB,
             stiffness: 0.04,
             length: 10
         }
-        this.pointB = batata;
-        this.sling = Constraint.create(options);
-        World.add(world, this.sling);
+        this.pointB = pontoB;
+        this.laucher = Constraint.create(options);
+        World.add(world, this.laucher);
     }
 
     fly(){
-        this.sling.bodyA = null;
+        this.laucher.bodyA = null;
     }
 
     display(){
-        if (this.sling.bodyA) {
-        var pointA = this.sling.bodyA.position;
+        if (this.laucher.bodyA) {
+        var pointA = this.laucher.bodyA.position;
         var pointB = this.pointB;
         strokeWeight(4);
         line(pointA.x, pointA.y, pointB.x, pointB.y);
