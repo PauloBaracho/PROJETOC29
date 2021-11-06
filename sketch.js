@@ -20,11 +20,6 @@ function setup() {
   ground = new Ground();
   stand1 = new Stand(390,300,250,10);
   stand2 = new Stand(700,200,200,10);
-  
-  // polygon = Bodies.circle(50,200,20);
-  // imageMode(CENTER);
-  // image(polygon_img, polygon.position.x,polygon.position.y,40,40);
-  // World.add(world,polygon);
 
   polygon = new Polygon (50,200,20)
   slingShot = new Launcher(polygon.body,{x:100,y:200})
